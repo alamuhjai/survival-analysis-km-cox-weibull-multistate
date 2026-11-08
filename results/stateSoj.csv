@@ -1,0 +1,11 @@
+"quantity","yr1","yr2","yr3","estimate","se","low95","up95","lrtStatW"
+"1->2",0.4031,0.5,0.4,0.4335,0.0132,0.4076,0.4594,11.779
+"1->3",0.001,0.0013,0.0014,0.0012,7e-04,-2e-04,0.0026,0.058
+"2->1",0.416,0.1923,0.128,0.2447,0.0057,0.2336,0.2559,447.539
+"2->3",8e-04,4e-04,0.0012,8e-04,3e-04,2e-04,0.0014,1.127
+"State 1 Sojourn (Piecewise 3-yr)",NA,NA,NA,1.6808,0.0293,1.6234,1.7381,460.503
+"State 2 Sojourn (Piecewise 3-yr)",NA,NA,NA,1.9273,0.0205,1.8871,1.9675,460.503
+"State 1 Sojourn (Pooled inf-horizon)",NA,NA,NA,2.3006,0.0701,2.1632,2.4379,460.503
+"State 2 Sojourn (Pooled inf-horizon)",NA,NA,NA,4.0729,0.0943,3.8881,4.2577,460.503
+"State 1 Total Occupation Psi_11(3)",NA,NA,NA,1.8853,NA,NA,NA,460.503
+"State 2 Total Occupation Psi_22(3)",NA,NA,NA,2.2818,NA,NA,NA,460.503

@@ -1,0 +1,6 @@
+"model","contrast","logHr","seLogHr","hr","low95","up95","pValue","zphP"
+"Stratified Main Effects","Test vs Standard (trt)",0.1189,0.2037,1.1262,0.7555,1.6789,0.5595,0.5257
+"Stratified Main Effects","Prior Yes vs No (prior = 10 vs 0)",0.1024,0.2156,1.1078,0.7259,1.6905,0.635,0.2258
+"Stratified Interaction","Test vs Standard | Prior = No (0)",0.3036,0.2396,1.3548,0.847,2.167,0.2051,NA
+"Stratified Interaction","Test vs Standard | Prior = Yes (10)",-0.3153,0.3628,0.7296,0.3583,1.4854,0.3848,NA
+"Stratified Interaction","Interaction ratio (Prior Yes / Prior No)",-0.6189,0.4266,0.5385,0.2334,1.2426,0.1468,NA
