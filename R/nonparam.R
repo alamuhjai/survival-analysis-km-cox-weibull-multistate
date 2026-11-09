@@ -46,7 +46,7 @@ rmstSum = rbind(
   extractSurvTable(fitTrt,   "trt",      lrTrt,  ppTrt)
 )
 
-cat("\n--- Study 1: veteran non-parametric summary ---\n")
+cat("\n--- veteran: non-parametric survival and RMST ---\n")
 print(rmstSum)
 write.csv(rmstSum, file.path(outDir, "rmstSum.csv"), row.names = FALSE)
 

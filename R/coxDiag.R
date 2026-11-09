@@ -53,7 +53,11 @@ coxCont = data.frame(
   row.names = NULL
 )
 
-cat("\n--- Study 1: stratified Cox contrasts ---\n")
+cat("\n--- veteran: unstratified and stratified Schoenfeld tests ---\n")
+print(zphUnstrat)
+print(zphStrat)
+
+cat("\n--- veteran: stratified Cox contrasts ---\n")
 print(coxCont)
 write.csv(coxCont, file.path(outDir, "coxCont.csv"), row.names = FALSE)
 

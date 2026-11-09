@@ -58,7 +58,10 @@ weibullDual = data.frame(
   row.names   = NULL
 )
 
-cat("\n--- Study 2: lung Weibull PH vs AFT ---\n")
+cat("\n--- lung: Weibull PH vs AFT and constant hazard ---\n")
+cat(sprintf("gamma = %.4f, sigma = %.4f, loglik = %.1f\n", gammaPh, sigmaAft, weib2$loglik[2]))
+cat(sprintf("Constant hazard (per 1,000 person-days): %.4f (linear Wald 95%% CI: %.4f, %.4f; log Wald 95%% CI: %.4f, %.4f)\n",
+            hz * 1000, ciLin[1], ciLin[2], ciLog[1], ciLog[2]))
 print(weibullDual)
 write.csv(weibullDual, file.path(outDir, "weibullDual.csv"), row.names = FALSE)
 

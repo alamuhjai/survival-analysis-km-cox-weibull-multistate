@@ -114,6 +114,12 @@ for (idx in seq_along(uGrid)) {
   occ2 = occ2 + wTrap[idx] * (P_u1[2, 2] + P_u2[2, 2] + P_u3[2, 2])
 }
 
+# exact Poisson (Garwood) 95% CIs for pooled transition rates
+totCounts = rowSums(transCounts)
+totRisk   = rowSums(timeAtRisk[stateMap, ])
+garLow    = ifelse(totCounts == 0, 0, qchisq(0.025, 2 * totCounts) / (2 * totRisk))
+garUp     = qchisq(0.975, 2 * (totCounts + 1)) / (2 * totRisk)
+
 stateSoj = data.frame(
   quantity  = c(rownames(transCounts),
                 "State 1 Sojourn (Piecewise 3-yr)", "State 2 Sojourn (Piecewise 3-yr)",
@@ -123,18 +129,19 @@ stateSoj = data.frame(
   yr2       = c(round(lambdaFull[, 2], 4), rep(NA, 6)),
   yr3       = c(round(lambdaFull[, 3], 4), rep(NA, 6)),
   estimate  = round(c(lambdaPool, pw1["mu"], pw2["mu"], mu1, mu2, occ1, occ2), 4),
-  se        = round(c(lambdaPool / sqrt(rowSums(transCounts)), pw1["se"], pw2["se"], se1, se2, NA, NA), 4),
-  low95     = round(c(lambdaPool - z * (lambdaPool / sqrt(rowSums(transCounts))),
+  se        = round(c(lambdaPool / sqrt(totCounts), pw1["se"], pw2["se"], se1, se2, NA, NA), 4),
+  low95     = round(c(garLow,
                       pw1["mu"] - z * pw1["se"], pw2["mu"] - z * pw2["se"],
                       mu1 - z * se1, mu2 - z * se2, NA, NA), 4),
-  up95      = round(c(lambdaPool + z * (lambdaPool / sqrt(rowSums(transCounts))),
+  up95      = round(c(garUp,
                       pw1["mu"] + z * pw1["se"], pw2["mu"] + z * pw2["se"],
                       mu1 + z * se1, mu2 + z * se2, NA, NA), 4),
-  lrtStatW  = c(round(contrib, 3), rep(round(W, 3), 6)),
+  lrtStatW  = c(round(contrib, 3), rep(NA, 6)),
   row.names = NULL
 )
 
-cat("\n--- Study 3: multistate transition summary ---\n")
+cat("\n--- illness-death: transition rates and sojourn summary ---\n")
+cat(sprintf("Homogeneity LRT: W = %.3f, df = %d, p = %.2e\n", W, df, pval))
 print(stateSoj)
 write.csv(stateSoj, file.path(outDir, "stateSoj.csv"), row.names = FALSE)
 
